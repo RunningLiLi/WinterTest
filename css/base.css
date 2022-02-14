@@ -229,8 +229,9 @@ input:focus{
     left: 180px;
 }
 .hotsong{
+    position: relative;
     width: 908px;
-    height: 350px;
+    height: 600px;
     background-color: white;
     border: solid 1px rgb(224, 219, 219);
     margin: 0 auto;
@@ -239,6 +240,10 @@ input:focus{
     font-family:"icomoon";
     content: "";
     color: red;
+    margin-right: 10px;
+}
+.hotsong-ico{
+    margin-left: 20px;
 }
 .hotsong-class li{
     display: inline-flex;
@@ -281,6 +286,8 @@ input:focus{
      width: 50px;
      border: none;
      border-bottom: solid 2px rgb(187, 183, 183);
+     font-size: x-large;
+     text-align: center;
 }
 .register-4input{
     position: absolute;
@@ -310,4 +317,47 @@ input:focus{
     border: none;
     border-radius: 4px;
     background-color: rgb(34, 115, 194);
+}
+.welcome{
+    position: relative;
+    display: none;
+    width: 560px;
+    height: 250px;
+}
+.span-name{
+    position: absolute;
+    font-size: small;
+    color: rgb(148, 145, 145);
+    top: 50px;
+    left: 190px;
+}
+.name{
+    position: absolute;
+    height: 30px;
+    width: 265px;
+    top: 90px;
+    left: 140px;
+}
+.begain{
+    position: absolute;
+    height: 40px;
+    background-color: rgb(37, 118, 199);
+    top: 170px;
+    left: 170px;
+    border: none;
+    border-radius: 4px;
+    color: white;
+}
+.hotsong-stop{
+    display:inline-block ;
+    margin-left: 380px;
+    font-size: small;
+    color: rgb(179, 176, 176);
+}
+.hotsong-stop::after{
+    font-family: 'icomoon';
+    content: '';
+    color: rgb(223, 37, 37);
+    margin-left: 5px;
+    font-size: small;
 }
