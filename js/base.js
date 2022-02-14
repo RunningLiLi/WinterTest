@@ -1957,8 +1957,10 @@ $(async function () {
   }
 
   volumelong.onmousedown = (event3) => {
-    let volumeHeight = getClientHeight() - event3.clientY - 50;
+    let volumeHeight = document.documentElement.clientHeight - event3.clientY - 50;
+    console.log(getClientHeight());console.log(event3.clientY )
     volumereally.style.height = volumeHeight + 'px';
+    console.log(volumeHeight )
     audio.volume = volumeHeight / 80;
     if (volumeHeight >= 80) {
       volumereally.onmousedown = () => {
@@ -1973,7 +1975,7 @@ $(async function () {
   }
   volumebigc.onmousedown = () => {
     volumediv.onmousemove = (event4) => {
-      let volumeHeight = getClientHeight() - event4.clientY - 50;
+      let volumeHeight = document.documentElement.clientHeight - event4.clientY - 50;
       volumereally.style.height = volumeHeight + 'px';
       audio.volume = volumeHeight / 80;
       if (volumereally.offsetHeight >= 80) {
