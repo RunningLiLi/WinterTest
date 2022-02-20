@@ -1131,6 +1131,7 @@ $(async function () {
       detaildiv2.style.height = (510 + trackIds.length * 23.88) + 'px';
       detaildiv.style.height = (530 + trackIds.length * 23.88) + 10000 + 'px';
       detaildivbody.style.height = trackIds.length * 23.88 + 'px';
+      let seconds;
       for (let i = 0; i < trackIds.length; i++) {
         let response3 = await fetch('http://redrock.udday.cn:2022/song/detail?ids=' + trackIds[i].id, {
           method: "POST"
@@ -1155,39 +1156,9 @@ $(async function () {
         let div5 = tr.childNodes[4].querySelector('div');
        
         div1.style.color = 'rgb(202, 199, 199);';
-        controlsprogressbartwolong.onmousedown = (event) => {
-          let width = event.clientX - controlsprogressbar.getBoundingClientRect().left;
-          let rata = width / 450;
-          let seconds = result3.songs[0].dt;
-          let time = parseInt(seconds * rata / 1000);
-          if (width < 450) {
-            audio.currentTime = time;
-            controlsprogressbarreally.style.width = event.clientX - controlsprogressbar.getBoundingClientRect().left + 'px';
-          } else if (width = 450) {
-            controlsplay.innerHTML = '';
-            flag5 = 1;
-          }
-
-        }
-        controlsprogressbartwocircle1.onmousedown = () => {
-          controlsprogressbar.onmousemove = (event2) => {
-            let width2 = event2.clientX - controlsprogressbar.getBoundingClientRect().left;
-            let rata2 = width2 / 450;
-            let seconds2 = result3.songs[0].dt;
-            let time2 = parseInt(seconds2 * rata2 / 1000)
-            if (width2 < 450) {
-              audio.currentTime = time2;
-              controlsprogressbarreally.style.width = event2.clientX - controlsprogressbar.getBoundingClientRect().left + 'px';
-              document.onmouseup = () => {
-                controlsprogressbar.onmousemove = null;
-              }
-            } else if (width2 = 450) {
-              controlsplay.innerHTML = '';
-              flag5 = 1;
-            }
-          }
-        }
+       
         div1.onclick = () => {
+          seconds=result3.songs[0].dt;
           recordid = trackIds[i].id;
           controlsimgT.src = result3.songs[0].al.picUrl;
           controlsprogressbarone.childNodes[1].innerHTML = result3.songs[0].name;
@@ -1219,6 +1190,7 @@ $(async function () {
             })
             let result31 = await response31.json();
             recordid = trackIds[i - 1].id;
+            seconds=result31.songs[0].dt;
             // controlsprogressbarreally.style.width=audio.currentTime/(result31.songs[0].dt / 1000)*450+'px';
             let s1 = parseInt(result31.songs[0].dt / 1000) % 60;
             let m1 = parseInt(parseInt(result31.songs[0].dt / 1000) / 60);
@@ -1266,6 +1238,7 @@ $(async function () {
             })
             let result32 = await response32.json();
             recordid = trackIds[i + 1].id;
+            seconds=result32.songs[0].dt;
             let s1 = parseInt(result32.songs[0].dt / 1000) % 60;
             let m1 = parseInt(parseInt(result32.songs[0].dt / 1000) / 60);
             if (s1 < 10 && m1 < 10) {
@@ -1388,7 +1361,39 @@ $(async function () {
           div5.innerHTML = result3.songs[0].al.name;
         }
         div5.title = result3.songs[0].al.name;
+        controlsprogressbartwolong.onmousedown = (event) => {
+          let width = event.clientX - controlsprogressbar.getBoundingClientRect().left;
+          let rata = width / 450;
+  
+          let time =seconds/1000*rata;
+          if (width < 450) {
+            audio.currentTime = time;
+            controlsprogressbarreally.style.width = event.clientX - controlsprogressbar.getBoundingClientRect().left + 'px';
+          } else if (width = 450) {
+            controlsplay.innerHTML = '';
+            flag5 = 1;
+          }
+  
+        }
+        controlsprogressbartwocircle1.onmousedown = () => {
+          controlsprogressbar.onmousemove = (event2) => {
+            let width2 = event2.clientX - controlsprogressbar.getBoundingClientRect().left;
+            let rata2 = width2 / 450;
+            let time2 = parseInt(seconds * rata2 / 1000)
+            if (width2 < 450) {
+              audio.currentTime = time2;
+              controlsprogressbarreally.style.width = event2.clientX - controlsprogressbar.getBoundingClientRect().left + 'px';
+              document.onmouseup = () => {
+                controlsprogressbar.onmousemove = null;
+              }
+            } else if (width2 = 450) {
+              controlsplay.innerHTML = '';
+              flag5 = 1;
+            }
+          }
+        }
       }
+     
     })
     img.addEventListener("click", async () => {
       let response2 = await fetch('http://redrock.udday.cn:2022/comment/playlist?id=' + id, {
@@ -1804,7 +1809,6 @@ $(async function () {
   controlsimg.addEventListener("mouseleave", () => {
     
     if(flag11==1){
-      console.log(1)
     imgfloat.style.opacity = '0';
     imgfloat.innerHTML = '';
    
@@ -2114,6 +2118,7 @@ $(async function () {
           detaildiv2.style.height = (510 + trackIds.length * 23.88) + 'px';
           detaildiv.style.height = (530 + trackIds.length * 23.88) + 1000 + 'px';
           detaildivbody.style.height = trackIds.length * 23.88 + 'px';
+          let seconds;
           for (let i = 0; i < trackIds.length; i++) {
             let response3 = await fetch('http://redrock.udday.cn:2022/song/detail?ids=' + trackIds[i].id, {
               method: "POST"
@@ -2162,39 +2167,9 @@ $(async function () {
             let controlstime1 = document.querySelector(".controls-time1");
             let controlstime2 = document.querySelector(".controls-time2");
             div1.style.color = 'rgb(202, 199, 199);';
-            controlsprogressbartwolong.onmousedown = (event) => {
-              let width = event.clientX - controlsprogressbar.getBoundingClientRect().left;
-              let rata = width / 450;
-              let seconds = result3.songs[0].dt;
-              let time = parseInt(seconds * rata / 1000);
-              if (width < 450) {
-                audio.currentTime = time;
-                controlsprogressbarreally.style.width = event.clientX - controlsprogressbar.getBoundingClientRect().left + 'px';
-              } else if (width = 450) {
-                controlsplay.innerHTML = '';
-                flag5 = 1;
-              }
-
-            }
-            controlsprogressbartwocircle1.onmousedown = () => {
-              controlsprogressbar.onmousemove = (event2) => {
-                let width2 = event2.clientX - controlsprogressbar.getBoundingClientRect().left;
-                let rata2 = width2 / 450;
-                let seconds2 = result3.songs[0].dt;
-                let time2 = parseInt(seconds2 * rata2 / 1000)
-                if (width2 < 450) {
-                  audio.currentTime = time2;
-                  controlsprogressbarreally.style.width = event2.clientX - controlsprogressbar.getBoundingClientRect().left + 'px';
-                  document.onmouseup = () => {
-                    controlsprogressbar.onmousemove = null;
-                  }
-                } else if (width2 = 450) {
-                  controlsplay.innerHTML = '';
-                  flag5 = 1;
-                }
-              }
-            }
+           
             div1.onclick = () => {
+              seconds=result3.songs[0].dt;
               recordid = trackIds[i].id;
               controlsimgT.src = result3.songs[0].al.picUrl;
               controlsprogressbarone.childNodes[1].innerHTML = result3.songs[0].name;
@@ -2225,6 +2200,7 @@ $(async function () {
                   method: "POST"
                 })
                 let result31 = await response31.json();
+                seconds=result31.songs[0].dt;
                 // controlsprogressbarreally.style.width=audio.currentTime/(result31.songs[0].dt / 1000)*450+'px';
                 let s1 = parseInt(result31.songs[0].dt / 1000) % 60;
                 let m1 = parseInt(parseInt(result31.songs[0].dt / 1000) / 60);
@@ -2273,6 +2249,7 @@ $(async function () {
                   method: "POST"
                 })
                 let result32 = await response32.json();
+                seconds=result32.songs[0].dt;
                 let s1 = parseInt(result32.songs[0].dt / 1000) % 60;
                 let m1 = parseInt(parseInt(result32.songs[0].dt / 1000) / 60);
                 if (s1 < 10 && m1 < 10) {
@@ -2395,6 +2372,37 @@ $(async function () {
               div5.innerHTML = result3.songs[0].al.name;
             }
             div5.title = result3.songs[0].al.name;
+            controlsprogressbartwolong.onmousedown = (event) => {
+              let width = event.clientX - controlsprogressbar.getBoundingClientRect().left;
+              let rata = width / 450;
+      
+              let time =seconds/1000*rata;
+              if (width < 450) {
+                audio.currentTime = time;
+                controlsprogressbarreally.style.width = event.clientX - controlsprogressbar.getBoundingClientRect().left + 'px';
+              } else if (width = 450) {
+                controlsplay.innerHTML = '';
+                flag5 = 1;
+              }
+      
+            }
+            controlsprogressbartwocircle1.onmousedown = () => {
+              controlsprogressbar.onmousemove = (event2) => {
+                let width2 = event2.clientX - controlsprogressbar.getBoundingClientRect().left;
+                let rata2 = width2 / 450;
+                let time2 = parseInt(seconds * rata2 / 1000)
+                if (width2 < 450) {
+                  audio.currentTime = time2;
+                  controlsprogressbarreally.style.width = event2.clientX - controlsprogressbar.getBoundingClientRect().left + 'px';
+                  document.onmouseup = () => {
+                    controlsprogressbar.onmousemove = null;
+                  }
+                } else if (width2 = 450) {
+                  controlsplay.innerHTML = '';
+                  flag5 = 1;
+                }
+              }
+            }
           }
         })
 
