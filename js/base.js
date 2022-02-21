@@ -135,6 +135,7 @@ $(async function () {
   let flag11=1;
   let flag12=1;
   let flag13=1;
+  let flag14=0;
   let record;
   let recordid;
   let recordid2;
@@ -368,13 +369,6 @@ $(async function () {
                           divoness[j].remove();
                         }
                       }
-
-
-
-
-
-
-
                      for (let y = 0; y < sidebarones.length; y++) {
                        sidebarones[y].style.backgroundColor = 'white';
                      }
@@ -645,19 +639,7 @@ $(async function () {
 
 
                        })
-                     }
-
-
-
-
-
-
-
-
-
-
-
-                     
+                     }      
                    })
                  }
                }
@@ -929,22 +911,8 @@ $(async function () {
                           controlstime2.innerHTML = '0' + m1 + ':' + s1;
                         }
                        });
-                    
-                    
-    
-    
                   })
             }
-            // let div12s=document.querySelectorAll(".div12");
-            // for(let f=0;f<div12s.length;f++){
-            //   div12s[f].addEventListener('click',async()=>{
-            //    div12s[f].style.backgroundColor='red'
-            //    controls.style.display='block';
-
-
-            //   })
-            // }
-
 
 
         })
@@ -1191,6 +1159,7 @@ $(async function () {
             let result31 = await response31.json();
             recordid = trackIds[i - 1].id;
             seconds=result31.songs[0].dt;
+            clearInterval(controls.getAttribute('songwordmove'))
             // controlsprogressbarreally.style.width=audio.currentTime/(result31.songs[0].dt / 1000)*450+'px';
             let s1 = parseInt(result31.songs[0].dt / 1000) % 60;
             let m1 = parseInt(parseInt(result31.songs[0].dt / 1000) / 60);
@@ -1239,6 +1208,7 @@ $(async function () {
             let result32 = await response32.json();
             recordid = trackIds[i + 1].id;
             seconds=result32.songs[0].dt;
+            clearInterval(controls.getAttribute('songwordmove'))
             let s1 = parseInt(result32.songs[0].dt / 1000) % 60;
             let m1 = parseInt(parseInt(result32.songs[0].dt / 1000) / 60);
             if (s1 < 10 && m1 < 10) {
@@ -1879,14 +1849,14 @@ $(async function () {
         document.querySelector('#time'+curtime).style.fontSize='30px';
         document.querySelector('#time'+curtime).style.fontWight='500';
         document.querySelector('#time'+curtime).style.color='black';
-        setInterval(()=>{
+        let timer=setInterval(()=>{
           for(let a=0;a<ps.length;a++){
             if(parseInt(audio.currentTime)==ps[a].getAttribute('time')){
-              songdetailwordsreally.style.top=-ps[a].getAttribute('top')+'px'
+              songdetailwordsreally.style.top=-parseInt(ps[a].getAttribute('top'))+80+'px'
             }
           }
-         
         },1000)
+        controls.setAttribute("songwordmove",timer);
         flag10=0;
         setTimeout(()=>{
          flag10=1
